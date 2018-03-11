@@ -1,3 +1,4 @@
 boto3
 pygithub
 pandas
+python-json-logger
