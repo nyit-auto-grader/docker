@@ -14,8 +14,7 @@ def hello():
 
 class HelloActivity(Command):
 
-    def __init__(self, **kwargs):
-        super().__init__()
+    fields = []
 
     def execute(self):
         hello()
