@@ -284,3 +284,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# custom
+process/tests/temp/*
+!.gitkeep
