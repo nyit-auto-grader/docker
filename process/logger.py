@@ -23,6 +23,13 @@ class CustomJsonFormatter(jsonlogger.JsonFormatter):
             value = getattr(record, field)
             if value:
                 log_record[field] = value
+        if record.msg is None:
+            log_record['message'] = 'null'
+        if 'override' in log_record:
+            for key, value in log_record['override'].items():
+                if key in log_record:
+                    log_record[key] = value
+            log_record.pop('override')
 
 
 class LoggerFactory:
@@ -39,3 +46,7 @@ class LoggerFactory:
         level = logging._nameToLevel[level_name.upper()]
         logger.setLevel(level)
         return logger
+
+    @staticmethod
+    def apply_global(logger):
+        logging.basicConfig(level=logger.level, format=logger.handlers[0].format)
